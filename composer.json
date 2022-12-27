@@ -1,0 +1,43 @@
+{
+    "name": "newnet/media",
+    "description": "Newnet Media",
+    "keywords": [
+        "newnet"
+    ],
+    "homepage": "https://newnet.vn",
+    "support" : {
+        "email" : "support@newnet.vn"
+    },
+    "authors": [
+        {
+            "name": "Kim Nguyen",
+            "email": "kimtrien@gmail.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "intervention/image": "^2.5",
+        "newnet/core": "^2.0",
+        "newnet/acl": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Newnet\\Media\\": "/src"
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Newnet\\Media\\MediaServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
