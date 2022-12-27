@@ -50,11 +50,5 @@ return [
         'enable' => true,
         'server' => env('MEDIA_IMAGEPROXY_SERVER', 'https://img.cdn2n.net'),
         'quality' => 80,
-    ],
-    'delete_image' => false,
-    // site file 8MB
-    'max_size' => 8388608,
-    'memory_limit' => '512M',
-    'is_resize' => env('MEDIA_IMAGE_RESIZE', false),
-    'is_crop'   => env('MEDIA_IMAGE_CROP', false),
+    ]
 ];

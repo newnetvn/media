@@ -10,11 +10,9 @@ use Intervention\Image\Image;
 use Newnet\Acl\Facades\Permission;
 use Newnet\Core\Events\CoreAdminMenuRegistered;
 use Newnet\Core\Facades\AdminMenu;
-use Newnet\Media\Events\MediaResizeEvent;
 use Newnet\Media\Events\MediaUploadedEvent;
 use Newnet\Media\Facades\Conversion;
 use Newnet\Media\Jobs\PerformConversions;
-use Newnet\Media\Jobs\ResizeImage;
 use Newnet\Media\Models\Media;
 use Newnet\Media\Models\Mediable;
 use Newnet\Media\Models\MediaTag;
@@ -63,7 +61,7 @@ class MediaServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'media');
 
-        $this->registerDefaultConversion();
+//        $this->registerDefaultConversion();
 
         $this->loadRoutes();
 
@@ -88,11 +86,6 @@ class MediaServiceProvider extends ServiceProvider
                 );
             });
         }
-        Event::listen(MediaResizeEvent::class,  function (MediaResizeEvent $event) {
-            ResizeImage::dispatch(
-                $event->media
-            );
-        });
     }
 
     protected function loadRoutes()

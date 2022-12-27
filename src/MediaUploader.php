@@ -4,7 +4,6 @@ namespace Newnet\Media;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
-use Newnet\Media\Events\MediaResizeEvent;
 use Newnet\Media\Events\MediaUploadedEvent;
 use Newnet\Media\Exceptions\CantUploadException;
 use Newnet\Media\Models\Media;
@@ -136,12 +135,7 @@ class MediaUploader
             ]
         );
 
-        if (config('media.is_resize')){
-            event(new MediaResizeEvent($media));
-        }
-        if (config('media.is_crop')){
-            event(new MediaUploadedEvent($media));
-        }
+        event(new MediaUploadedEvent($media));
 
         return $media->fresh();
     }

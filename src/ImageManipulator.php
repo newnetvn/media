@@ -42,7 +42,6 @@ class ImageManipulator
         }
 
         foreach ($conversions as $conversion) {
-            ini_set('memory_limit', config('media.memory_limit'));
             $path = $media->getPath($conversion);
 
             $filesystem = $media->filesystem();
@@ -53,48 +52,13 @@ class ImageManipulator
 
             $converter = $this->conversionRegistry->get($conversion);
 
-            $image
-                = $converter($this->imageManager->make($filesystem->readStream($media->getPath())));
+            $image = $converter($this->imageManager->make(
+                $filesystem->readStream($media->getPath())
+            ));
 
             $filesystem->put($path, $image->stream(), [
-                'visibility' => 'public',
+                'visibility' => 'public'
             ]);
-            $image->destroy();
         }
-    }
-
-    public function resizeImage(Media $media)
-    {
-        ini_set('memory_limit', config('media.memory_limit'));
-        if (!$media->isOfType('image')) {
-            return;
-        }
-
-        $image = \Image::make($media->getFullPath());
-
-        if (file_exists($image)) {
-            return;
-        }
-        list($width, $height) = getimagesize($media->getFullPath());
-        $resizeSize = config('media.resize', []);
-
-        if ($width <= $resizeSize[0] && $height <= $resizeSize[1]){
-            return;
-        }
-
-        $ratio = $width / $height;
-        if ($ratio > 1) {
-            $resized_width = $resizeSize[0];
-            $resized_height = $resizeSize[1] / $ratio;
-        } else {
-            $resized_width = $resizeSize[0] * $ratio;
-            $resized_height = $resizeSize[1];
-        }
-        $image->resize($resized_width, $resized_height);
-        $filesystem = $media->filesystem();
-        $filesystem->put($media->getPath(), $image->stream(), [
-            'visibility' => 'public',
-        ]);
-        $image->destroy();
     }
 }

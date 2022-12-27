@@ -19,7 +19,7 @@ class FroalaMediaResource extends JsonResource
             'media-id' => $this->id,
             'name'     => $this->name,
             'url'      => $this->getUrl(),
-            'thumb'    => $this->getUrl('thumb'),
+            'thumb'    => $this->thumb,
         ];
     }
 }

@@ -55,6 +55,8 @@ class Media extends Model
         'disk',
         'mime_type',
         'size',
+        'width',
+        'height',
     ];
 
     protected static function boot()
@@ -140,9 +142,9 @@ class Media extends Model
     {
         $directory = $this->getDirectory();
 
-        if ($conversion) {
-            $directory .= '/conversions/'.$conversion;
-        }
+//        if ($conversion) {
+//            $directory .= '/conversions/'.$conversion;
+//        }
 
         return $directory.'/'.$this->file_name;
     }
@@ -174,7 +176,9 @@ class Media extends Model
 
     public function getThumbAttribute()
     {
-        return $this->getUrl('thumb');
+        $thumbSize = config('media.thumbsize', [300, 300]);
+
+        return $this->crop($thumbSize[0], $thumbSize[1]);
     }
 
     public function getUrlAttribute()

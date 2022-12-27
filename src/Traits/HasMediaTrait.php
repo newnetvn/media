@@ -105,6 +105,21 @@ trait HasMediaTrait
     }
 
     /**
+     * Get the url of the first media item in the specified group.
+     * @param string $group
+     * @param string $conversion
+     * @return string
+     */
+    public function getFirstMediaThumb(string $group = 'default')
+    {
+        if (!$media = $this->getFirstMedia($group)) {
+            return '';
+        }
+
+        return $media->thumb;
+    }
+
+    /**
      * Attach media to the specified group.
      * @param mixed  $media
      * @param string $group

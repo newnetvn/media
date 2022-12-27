@@ -65,7 +65,7 @@ class UploadController extends Controller
             'media-id' => $medias->first()->id,
             'name'     => $medias->first()->name,
             'link'     => $medias->first()->getUrl(),
-            'thumb'    => imageProxy($medias->first()->getUrl(), 300, 300),
+            'thumb'    => $medias->first()->thumb,
         ]);
     }
 
@@ -75,7 +75,7 @@ class UploadController extends Controller
             'media-id' => $medias->first()->id,
             'name'     => $medias->first()->name,
             'link'     => $medias->first()->getUrl(),
-            'thumb'    => imageProxy($medias->first()->getUrl(), 300, 300),
+            'thumb'    => $medias->first()->thumb,
         ]);
     }
 

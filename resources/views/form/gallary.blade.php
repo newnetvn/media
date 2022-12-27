@@ -7,16 +7,16 @@
                     @foreach($listMedia as $mediaId)
                         @if($media = get_media($mediaId))
                             <div class="gallery-item">
-                                <img src="{{ $media->getUrl('thumb') }}" alt="Image">
+                                <img src="{{ $media->thumb }}" alt="Image">
                                 <input type="hidden" name="{{ $name }}[]" value="{{ $media->id }}">
                                 <a href="#" class="remove-media" title="Delete Image"><i class="fas fa-times-circle"></i></a>
                             </div>
                         @endif
                     @endforeach
-                @elseif(method_exists($item, 'getMedia') && $item->hasMedia($name))
+                @elseif($item && method_exists($item, 'getMedia') && $item->hasMedia($name))
                     @foreach($item->getMedia($name) as $media)
                         <div class="gallery-item">
-                            <img src="{{ $media->getUrl('thumb') }}" alt="Image">
+                            <img src="{{ $media->thumb }}" alt="Image">
                             <input type="hidden" name="{{ $name }}[]" value="{{ $media->id }}">
                             <a href="#" class="remove-media" title="Delete Image"><i class="fas fa-times-circle"></i></a>
                         </div>

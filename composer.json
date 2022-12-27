@@ -1,6 +1,7 @@
 {
     "name": "newnet/media",
     "description": "Newnet Media",
+    "license": "MIT",
     "keywords": [
         "newnet"
     ],
@@ -10,15 +11,13 @@
     },
     "authors": [
         {
-            "name": "Kim Nguyen",
-            "email": "kimtrien@gmail.com"
+            "name": "Newnet",
+            "email": "support@newnet.vn"
         }
     ],
     "type": "library",
     "require": {
-        "intervention/image": "^2.5",
-        "newnet/core": "^2.0",
-        "newnet/acl": "^2.0"
+        "intervention/image": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -33,9 +32,6 @@
             "providers": [
                 "Newnet\\Media\\MediaServiceProvider"
             ]
-        },
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
         }
     },
     "minimum-stability": "dev",
